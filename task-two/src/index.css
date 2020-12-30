@@ -46,7 +46,7 @@ td {
   word-wrap: break-word;
 }
 table{
-  margin-top: 40px;
+  margin: 40px 0;
   width: 100%;
   table-layout: fixed;
 }
@@ -54,4 +54,22 @@ table{
   background-color: #0779e4;
   color: white;
   font-weight: bold;
+}
+.table-head td{
+  border-top-color: white;
+}
+.table-head td:first-child{
+  border-top-left-radius: 15px;
+  border-left-color: white;
+}
+.table-head td:last-child{
+  border-top-right-radius: 15px;
+  border-right-color: white;
+}
+.search{
+  width: 90%;
+  height: 50px;
+  margin-top: 25px;
+  border-radius: 10px;
+  outline: none;
 }

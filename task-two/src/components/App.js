@@ -1,11 +1,11 @@
 import Header from './Header';
-import Table from './Table';
+import Home from './Home';
 
 function App() {
   return (
     <div>
       <Header />
-      <Table />
+      <Home />
     </div>
   );
 }
