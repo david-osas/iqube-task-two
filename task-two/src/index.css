@@ -1,0 +1,28 @@
+.app-container{
+  margin-left: 20%;
+  margin-right: 20%;
+}
+.app-name{
+  font-family: 'Lobster', cursive;
+}
+
+/* Header component */
+.header{
+  height: 40vh;
+  background-color: #11698e;
+  padding-top: 50px;
+}
+.logo{
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: auto;
+}
+.header-details{
+  color: white;
+  text-align: center;
+}
+.first-title{
+  font-size: 30px;
+  margin-top: 10px;
+}
