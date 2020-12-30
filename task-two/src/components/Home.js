@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import Table from './Table';
 import loadingImg from '../loading.gif';
+import {getData} from '../homeUtils.js';
 
 function Home(){
   let [staticData, setStatic] = useState([]);
@@ -9,21 +10,6 @@ function Home(){
   let [load, setLoad] = useState(true);
   let [search, setSearch] = useState('');
   let titles = ['State', 'Confirmed cases','Cases on admission', 'Discharged', 'Death'];
-
-  async function getData(){
-    let res = await fetch('https://covidnigeria.herokuapp.com/api');
-    let resJson = await res.json();
-    setStatic(resJson.data.states);
-    setDynamic(resJson.data.states);
-    let {totalSamplesTested, totalConfirmedCases, totalActiveCases, discharged, death} = resJson.data;
-    setMeta([`Total samples tested : ${totalSamplesTested}`,
-      `Total confirmed cases : ${totalConfirmedCases}`,
-      `Total active cases : ${totalActiveCases}`,
-      `Total active cases : ${discharged}`,
-      `Total active cases : ${death}`
-    ]);
-    setLoad(false);
-  }
 
   function handleChange(e){
     let current = e.target.value;
@@ -39,9 +25,9 @@ function Home(){
   }
 
   useEffect(() => {
-    getData();
+    getData(setStatic, setDynamic, setMeta, setLoad);
 
-  },[])
+  },[]);
 
   if(load){
     return(
@@ -52,7 +38,7 @@ function Home(){
   return(
     <div className='app-container'>
       <div className='row row-cols-lg-6 row-cols-md-4 row-cols-1 home-meta'>
-        {metaData.map((item) => <div className='meta-item'>
+        {metaData.map((item) => <div key={item} className='meta-item'>
           {item}
         </div>)}
       </div>
