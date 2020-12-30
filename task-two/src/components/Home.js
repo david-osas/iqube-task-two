@@ -15,8 +15,13 @@ function Home(){
     let resJson = await res.json();
     setStatic(resJson.data.states);
     setDynamic(resJson.data.states);
-    let {totalSamplesTested, totalConfirmedCases, totalActiveCases, discharged, death} = resJson;
-    setMeta([totalSamplesTested, totalConfirmedCases, totalActiveCases, discharged, death]);
+    let {totalSamplesTested, totalConfirmedCases, totalActiveCases, discharged, death} = resJson.data;
+    setMeta([`Total samples tested : ${totalSamplesTested}`,
+      `Total confirmed cases : ${totalConfirmedCases}`,
+      `Total active cases : ${totalActiveCases}`,
+      `Total active cases : ${discharged}`,
+      `Total active cases : ${death}`
+    ]);
     setLoad(false);
   }
 
@@ -46,11 +51,14 @@ function Home(){
 
   return(
     <div className='app-container'>
+      <div className='row row-cols-lg-6 row-cols-md-4 row-cols-1 home-meta'>
+        {metaData.map((item) => <div className='meta-item'>
+          {item}
+        </div>)}
+      </div>
       <input type='text' placeholder='Search by state' className='search'
        value={search} onChange={handleChange} />
-      <div>
 
-      </div>
       <Table data={dynamicData} titles={titles} />
     </div>
   );
